@@ -16,24 +16,24 @@ import javax.swing.JOptionPane;
  * @author Owner
  */
 public class Principal extends javax.swing.JFrame {
-    
+
     ArrayList<Usuario> usuarios = new ArrayList();
     ArrayList<Libro> listaLibros = new ArrayList();
-    
+
     public Principal() {
-        
+
         initComponents();
         this.setLocationRelativeTo(Login);
-        
+
         Login.setModal(true);
         Login.pack();
         Login.setLocationRelativeTo(null);
         Login.setVisible(true);
-        
+
     }
-    
+
     private Usuario miUsuario;
-    
+
     private final String adminNick = "Admin";
     private final String adminPass = "12345";
 
@@ -1162,7 +1162,7 @@ public class Principal extends javax.swing.JFrame {
             String correo = tf_correo.getText();
             String nombreCompleto = tf_nombreCompleto.getText();
             String generoFavorito;
-            
+
             if (b_acc.isSelected()) {
                 generoFavorito = "Accion";
             } else if (b_fan.isSelected()) {
@@ -1172,45 +1172,47 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 generoFavorito = "Romance";
             }
-            
+
             usuarios.add(new Usuario(nick, pass, nacimiento, telefono, correo, nombreCompleto, generoFavorito));
             JOptionPane.showMessageDialog(NuevoUsuario, "Usuario creado exitosamente");
             NuevoUsuario.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(NuevoUsuario, "Ha habido un problema al ingresar los datos");
         }
-        
+
 
     }//GEN-LAST:event_bt_joinActionPerformed
 
     private void bt_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_LoginActionPerformed
-        
+
         try {
             String nick = tf_nombreUsuarioLogin.getText();
             String pass = tf_PassLogin.getText();
-            
+
             if (validarUsuario(nick, pass)) {
                 this.setVisible(true);
                 Login.dispose();
                 Actualizar();
-                
+
             } else if (nick.equalsIgnoreCase(adminNick) && pass.equalsIgnoreCase(adminPass)) {
+                Login.dispose();
                 Administrador.setModal(true);
                 Administrador.pack();
                 Administrador.setLocationRelativeTo(null);
                 Administrador.setVisible(true);
-                Login.dispose();
-                Actualizar();
                 
+               
+
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario no valido");
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Debe llenar los campos");
-            
+            e.printStackTrace();
+
         }
-        
+
 
     }//GEN-LAST:event_bt_LoginActionPerformed
 
@@ -1225,54 +1227,54 @@ public class Principal extends javax.swing.JFrame {
     private void bt_enviarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_enviarSolicitudActionPerformed
         int pos = jl_BuscarAmigos.getSelectedIndex();
         DefaultListModel lista = (DefaultListModel) jl_BuscarAmigos.getModel();
-        
+
         if (pos >= 0) {
-            
+
             ((Usuario) lista.get(pos)).getSolicitudes().add(miUsuario);
             Actualizar();
         }
         JOptionPane.showMessageDialog(this, "Solicitud enviada correctamente");
-        
+
 
     }//GEN-LAST:event_bt_enviarSolicitudActionPerformed
 
     private void bt_AceptarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_AceptarSolicitudActionPerformed
         int pos = jl_solicitudes.getSelectedIndex();
-        
+
         if (pos >= 0) {
-            
+
             miUsuario.getListaAmigos().add(miUsuario.getSolicitudes().get(pos));
             miUsuario.getSolicitudes().get(pos).getListaAmigos().add(miUsuario);
             miUsuario.getSolicitudes().remove(pos);
-            
+
             Actualizar();
-            
+
         }
-        
+
 
     }//GEN-LAST:event_bt_AceptarSolicitudActionPerformed
 
     private void bt_EliminarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_EliminarSolicitudActionPerformed
         int pos = jl_solicitudes.getSelectedIndex();
-        
+
         if (pos >= 0) {
-            
+
             miUsuario.getSolicitudes().remove(pos);
-            
+
             Actualizar();
-            
+
         }
     }//GEN-LAST:event_bt_EliminarSolicitudActionPerformed
 
     private void bt_EliminarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_EliminarAmigoActionPerformed
         int pos = jl_amigos.getSelectedIndex();
-        
+
         if (pos >= 0) {
-            
+
             miUsuario.getListaAmigos().remove(pos);
-            
+
             Actualizar();
-            
+
         }
     }//GEN-LAST:event_bt_EliminarAmigoActionPerformed
 
@@ -1303,7 +1305,7 @@ public class Principal extends javax.swing.JFrame {
         tf_telefono1.setText("" + miUsuario.getTelefono());
         tf_correo1.setText(miUsuario.getCorreo());
         tf_nombreCompleto1.setText(miUsuario.getNombreCompleto());
-        
+
         ModificarUsuario.setModal(true);
         ModificarUsuario.pack();
         ModificarUsuario.setLocationRelativeTo(null);
@@ -1322,7 +1324,7 @@ public class Principal extends javax.swing.JFrame {
             String correo = tf_correo1.getText();
             String nombreCompleto = tf_nombreCompleto1.getText();
             String generoFavorito;
-            
+
             if (b_acc1.isSelected()) {
                 generoFavorito = "Accion";
             } else if (b_fan1.isSelected()) {
@@ -1332,7 +1334,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 generoFavorito = "Romance";
             }
-            
+
             miUsuario.setNick(nick);
             miUsuario.setCorreo(correo);
             miUsuario.setPass(pass);
@@ -1340,7 +1342,7 @@ public class Principal extends javax.swing.JFrame {
             miUsuario.setTelefono(telefono);
             miUsuario.setGeneroFavorito(generoFavorito);
             miUsuario.setNombreCompleto(nombreCompleto);
-            
+
             JOptionPane.showMessageDialog(NuevoUsuario, "Usuario modificado exitosamente");
             ModificarUsuario.dispose();
         } catch (Exception e) {
@@ -1359,7 +1361,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void modificarlibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarlibroActionPerformed
         try {
-            
+
             String titulo = tf_titulo5.getText();
             String descripcion = tf_descripcion5.getText();
             byte puntuacion = (byte) sp_puntuacion5.getValue();
@@ -1372,9 +1374,9 @@ public class Principal extends javax.swing.JFrame {
             String Autor = tf_autor5.getText();
             Date fecha = new Date();
             fecha.setYear(jd_anio5.getYear());
-            
+
             String genero;
-            
+
             if (b_acc7.isSelected()) {
                 genero = "Accion";
             } else if (b_fan7.isSelected()) {
@@ -1384,18 +1386,19 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 genero = "Romance";
             }
-            
+
             Libro l = listaLibros.get(cb_libros.getSelectedIndex());
             l.setAutor(Autor);
             l.setCopiasDisponibles(copias);
             l.setDescripcion(descripcion);
             l.setGenero(genero);
             l.setPunlicacion(fecha);
-            l.getPuntaje();
-            l.getTitulo();
-            l.getValor();
-            
+            l.setTitulo(titulo);
+            l.setPunlicacion(fecha);
+            l.setValor(valor);
+
             Libros();
+            actualizar2();
             JOptionPane.showMessageDialog(this, "Libro modificado exitosamente");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrio un problemo");
@@ -1404,7 +1407,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            
+
             String titulo = tf_titulo.getText();
             String descripcion = tf_descripcion.getText();
             byte puntuacion = (byte) sp_puntuacion.getValue();
@@ -1417,9 +1420,9 @@ public class Principal extends javax.swing.JFrame {
             String Autor = tf_autor.getText();
             Date fecha = new Date();
             fecha.setYear(jd_anio.getYear());
-            
+
             String genero;
-            
+
             if (b_acc2.isSelected()) {
                 genero = "Accion";
             } else if (b_fan2.isSelected()) {
@@ -1431,47 +1434,50 @@ public class Principal extends javax.swing.JFrame {
             }
             listaLibros.add(new Libro(titulo, descripcion, puntuacion, copias, genero, valor, Autor, fecha));
             Libros();
+            actualizar2();
             JOptionPane.showMessageDialog(this, "Libro creado exitosamente");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrio un problemo");
+            JOptionPane.showMessageDialog(this, "Ocurrio un problema");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void eliminarlibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarlibroActionPerformed
-        
+
         listaLibros.remove(cb_libros.getSelectedIndex());
-        Actualizar();
+        actualizar2();
 
     }//GEN-LAST:event_eliminarlibroActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Administrador.dispose();
+
         Login.setModal(true);
         Login.pack();
         Login.setLocationRelativeTo(null);
         Login.setVisible(true);
+        Administrador.dispose();
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void bt_agregarColeccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_agregarColeccion1ActionPerformed
-       DefaultComboBoxModel modelo = (DefaultComboBoxModel) jl_Buscarfavorito.getModel();
-        miUsuario.getListaLibros().add((Libro)modelo.getElementAt(jl_Buscarfavorito.getSelectedIndex()));
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) jl_Buscarfavorito.getModel();
+        miUsuario.getListaLibros().add((Libro) modelo.getElementAt(jl_Buscarfavorito.getSelectedIndex()));
     }//GEN-LAST:event_bt_agregarColeccion1ActionPerformed
-    
+
     public void Libros() {
         try {
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_libros.getModel();
-            
+
             tf_titulo5.setText(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getTitulo());
             tf_descripcion5.setText(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getDescripcion());
-            sp_puntuacion5.setValue(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getValor());
+            sp_puntuacion5.setValue(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getPuntaje());
             tf_copias5.setText("" + ((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getCopiasDisponibles());
             tf_valor5.setText("" + ((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getValor());
             tf_autor5.setText(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getAutor());
         } catch (Exception e) {
         }
-        
+
     }
-    
+
     private boolean validarUsuario(String nick, String pass) {
         for (Usuario user : usuarios) {
             if (nick.equalsIgnoreCase(user.getNick()) && pass.equals(user.getPass())) {
@@ -1481,7 +1487,7 @@ public class Principal extends javax.swing.JFrame {
         }
         return false;
     }
-    
+
     public void Actualizar() {
         DefaultListModel modeloLista = (DefaultListModel) jl_amigos.getModel();
         DefaultListModel modeloBuscar = (DefaultListModel) jl_BuscarAmigos.getModel();
@@ -1495,46 +1501,49 @@ public class Principal extends javax.swing.JFrame {
         modelolibros.removeAllElements();
         modelolibros2.removeAllElements();
         modelolibros3.removeAllElements();
-        
+
         for (Usuario user : miUsuario.getListaAmigos()) {
-            
+
             modeloLista.addElement(user);
-            
+
         }
         for (Usuario sl : miUsuario.getSolicitudes()) {
-            
+
             modeloSolicitud.addElement(sl);
-            
+
         }
         for (Usuario user : usuarios) {
             if (!miUsuario.getListaAmigos().contains(user) && !user.equals(miUsuario) && !miUsuario.getSolicitudes().contains(user) && !user.getSolicitudes().contains(miUsuario)) {
                 modeloBuscar.addElement(user);
             }
         }
-        
+
         for (Libro lb : listaLibros) {
             modelolibros.addElement(lb);
-            
+
         }
         for (Libro lb : miUsuario.getListaLibros()) {
             modelolibros2.addElement(lb);
-            
+
         }
         for (Libro lb : listaLibros) {
             if (lb.getGenero().equals(miUsuario.getGeneroFavorito())) {
                 modelolibros3.addElement(lb);
             }
-            
+
         }
-        
+
+    }
+
+    public void actualizar2() {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_libros.getModel();
         modelo.removeAllElements();
         for (Libro lb : listaLibros) {
             modelo.addElement(lb);
-            
+
         }
         Libros();
-        
+
     }
 
     /**
