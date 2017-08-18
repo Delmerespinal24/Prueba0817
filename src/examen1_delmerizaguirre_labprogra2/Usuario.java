@@ -12,17 +12,18 @@ public class Usuario {
     private String nick;
     private String pass;
     private Date nacimiento;
-    private String Telefono;
+    private int Telefono;
     private String correo;
     private String nombreCompleto;
     private String generoFavorito;
     private ArrayList<Usuario> ListaAmigos = new ArrayList();
     private ArrayList<Libro> ListaLibros = new ArrayList();
+    private ArrayList<Usuario> Solicitudes = new ArrayList();
 
     public Usuario() {
     }
 
-    public Usuario(String nick, String pass, Date nacimiento, String Telefono, String correo, String nombreCompleto, String generoFavorito) {
+    public Usuario(String nick, String pass, Date nacimiento, int Telefono, String correo, String nombreCompleto, String generoFavorito) {
         this.nick = nick;
         this.pass = pass;
         this.nacimiento = nacimiento;
@@ -56,11 +57,11 @@ public class Usuario {
         this.nacimiento = nacimiento;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return Telefono;
     }
 
-    public void setTelefono(String Telefono) {
+    public void setTelefono(int Telefono) {
         this.Telefono = Telefono;
     }
 
@@ -104,9 +105,17 @@ public class Usuario {
         this.ListaLibros = ListaLibros;
     }
 
+    public ArrayList<Usuario> getSolicitudes() {
+        return Solicitudes;
+    }
+
+    public void setSolicitudes(ArrayList<Usuario> Solicitudes) {
+        this.Solicitudes = Solicitudes;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" + "nick=" + nick + ", pass=" + pass + ", nacimiento=" + nacimiento + ", Telefono=" + Telefono + ", correo=" + correo + ", nombreCompleto=" + nombreCompleto + ", generoFavorito=" + generoFavorito + ", ListaAmigos=" + ListaAmigos + ", ListaLibros=" + ListaLibros + '}';
+        return nick;
     }
     
     
