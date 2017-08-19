@@ -16,24 +16,24 @@ import javax.swing.JOptionPane;
  * @author Owner
  */
 public class Principal extends javax.swing.JFrame {
-
+    
     ArrayList<Usuario> usuarios = new ArrayList();
     ArrayList<Libro> listaLibros = new ArrayList();
-
+    
     public Principal() {
-
+        
         initComponents();
         this.setLocationRelativeTo(Login);
-
+        
         Login.setModal(true);
         Login.pack();
         Login.setLocationRelativeTo(null);
         Login.setVisible(true);
-
+        
     }
-
+    
     private Usuario miUsuario;
-
+    
     private final String adminNick = "Admin";
     private final String adminPass = "12345";
 
@@ -153,10 +153,10 @@ public class Principal extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         bt_modificarCuenta = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         Cerrar_cesion = new javax.swing.JButton();
         Eliminar_MiCuenta = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jl_mislibros = new javax.swing.JList<>();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jl_amigos = new javax.swing.JList<>();
@@ -178,6 +178,10 @@ public class Principal extends javax.swing.JFrame {
         bt_agregarColeccion = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
+        jLabel74 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jl_Buscarfavorito = new javax.swing.JList<>();
+        bt_agregarColeccion1 = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(102, 204, 255));
 
@@ -859,19 +863,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Mis Libros");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable1);
-
         Cerrar_cesion.setText("Cerrar cesion");
         Cerrar_cesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -887,6 +878,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jl_mislibros.setModel(new DefaultListModel()
+        );
+        jScrollPane6.setViewportView(jl_mislibros);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -894,15 +889,14 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Cerrar_cesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bt_modificarCuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Eliminar_MiCuenta))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Cerrar_cesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_modificarCuenta, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(389, 389, 389)
+                        .addComponent(Eliminar_MiCuenta)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -917,8 +911,8 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Principal", jPanel4);
@@ -1100,15 +1094,45 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Buscar libros", jPanel7);
 
+        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel74.setText("Buscar Libros");
+
+        jl_Buscarfavorito.setModel(new DefaultListModel()
+        );
+        jScrollPane5.setViewportView(jl_Buscarfavorito);
+
+        bt_agregarColeccion1.setText("Agregar a mi lista");
+        bt_agregarColeccion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_agregarColeccion1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel74)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(195, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bt_agregarColeccion1)
+                .addGap(286, 286, 286))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel74)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_agregarColeccion1)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Libros de mi genero favorito", jPanel8);
@@ -1138,7 +1162,7 @@ public class Principal extends javax.swing.JFrame {
             String correo = tf_correo.getText();
             String nombreCompleto = tf_nombreCompleto.getText();
             String generoFavorito;
-
+            
             if (b_acc.isSelected()) {
                 generoFavorito = "Accion";
             } else if (b_fan.isSelected()) {
@@ -1148,28 +1172,28 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 generoFavorito = "Romance";
             }
-
+            
             usuarios.add(new Usuario(nick, pass, nacimiento, telefono, correo, nombreCompleto, generoFavorito));
             JOptionPane.showMessageDialog(NuevoUsuario, "Usuario creado exitosamente");
             NuevoUsuario.dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(NuevoUsuario, "Ha habido un problema al ingresar los datos");
         }
-
+        
 
     }//GEN-LAST:event_bt_joinActionPerformed
 
     private void bt_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_LoginActionPerformed
-
+        
         try {
             String nick = tf_nombreUsuarioLogin.getText();
             String pass = tf_PassLogin.getText();
-
+            
             if (validarUsuario(nick, pass)) {
                 this.setVisible(true);
                 Login.dispose();
                 Actualizar();
-
+                
             } else if (nick.equalsIgnoreCase(adminNick) && pass.equalsIgnoreCase(adminPass)) {
                 Administrador.setModal(true);
                 Administrador.pack();
@@ -1177,16 +1201,16 @@ public class Principal extends javax.swing.JFrame {
                 Administrador.setVisible(true);
                 Login.dispose();
                 Actualizar();
-
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario no valido");
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Debe llenar los campos");
-
+            
         }
-
+        
 
     }//GEN-LAST:event_bt_LoginActionPerformed
 
@@ -1201,54 +1225,54 @@ public class Principal extends javax.swing.JFrame {
     private void bt_enviarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_enviarSolicitudActionPerformed
         int pos = jl_BuscarAmigos.getSelectedIndex();
         DefaultListModel lista = (DefaultListModel) jl_BuscarAmigos.getModel();
-
+        
         if (pos >= 0) {
-
+            
             ((Usuario) lista.get(pos)).getSolicitudes().add(miUsuario);
             Actualizar();
         }
         JOptionPane.showMessageDialog(this, "Solicitud enviada correctamente");
-
+        
 
     }//GEN-LAST:event_bt_enviarSolicitudActionPerformed
 
     private void bt_AceptarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_AceptarSolicitudActionPerformed
         int pos = jl_solicitudes.getSelectedIndex();
-
+        
         if (pos >= 0) {
-
+            
             miUsuario.getListaAmigos().add(miUsuario.getSolicitudes().get(pos));
             miUsuario.getSolicitudes().get(pos).getListaAmigos().add(miUsuario);
             miUsuario.getSolicitudes().remove(pos);
-
+            
             Actualizar();
-
+            
         }
-
+        
 
     }//GEN-LAST:event_bt_AceptarSolicitudActionPerformed
 
     private void bt_EliminarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_EliminarSolicitudActionPerformed
         int pos = jl_solicitudes.getSelectedIndex();
-
+        
         if (pos >= 0) {
-
+            
             miUsuario.getSolicitudes().remove(pos);
-
+            
             Actualizar();
-
+            
         }
     }//GEN-LAST:event_bt_EliminarSolicitudActionPerformed
 
     private void bt_EliminarAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_EliminarAmigoActionPerformed
         int pos = jl_amigos.getSelectedIndex();
-
+        
         if (pos >= 0) {
-
+            
             miUsuario.getListaAmigos().remove(pos);
-
+            
             Actualizar();
-
+            
         }
     }//GEN-LAST:event_bt_EliminarAmigoActionPerformed
 
@@ -1279,7 +1303,7 @@ public class Principal extends javax.swing.JFrame {
         tf_telefono1.setText("" + miUsuario.getTelefono());
         tf_correo1.setText(miUsuario.getCorreo());
         tf_nombreCompleto1.setText(miUsuario.getNombreCompleto());
-
+        
         ModificarUsuario.setModal(true);
         ModificarUsuario.pack();
         ModificarUsuario.setLocationRelativeTo(null);
@@ -1298,7 +1322,7 @@ public class Principal extends javax.swing.JFrame {
             String correo = tf_correo1.getText();
             String nombreCompleto = tf_nombreCompleto1.getText();
             String generoFavorito;
-
+            
             if (b_acc1.isSelected()) {
                 generoFavorito = "Accion";
             } else if (b_fan1.isSelected()) {
@@ -1308,7 +1332,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 generoFavorito = "Romance";
             }
-
+            
             miUsuario.setNick(nick);
             miUsuario.setCorreo(correo);
             miUsuario.setPass(pass);
@@ -1316,7 +1340,7 @@ public class Principal extends javax.swing.JFrame {
             miUsuario.setTelefono(telefono);
             miUsuario.setGeneroFavorito(generoFavorito);
             miUsuario.setNombreCompleto(nombreCompleto);
-
+            
             JOptionPane.showMessageDialog(NuevoUsuario, "Usuario modificado exitosamente");
             ModificarUsuario.dispose();
         } catch (Exception e) {
@@ -1326,7 +1350,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void bt_agregarColeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_agregarColeccionActionPerformed
-        // TODO add your handling code here:
+        miUsuario.getListaLibros().add(listaLibros.get(jl_BuscarLibros.getSelectedIndex()));
     }//GEN-LAST:event_bt_agregarColeccionActionPerformed
 
     private void cb_librosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_librosItemStateChanged
@@ -1335,7 +1359,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void modificarlibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarlibroActionPerformed
         try {
-
+            
             String titulo = tf_titulo5.getText();
             String descripcion = tf_descripcion5.getText();
             byte puntuacion = (byte) sp_puntuacion5.getValue();
@@ -1348,9 +1372,9 @@ public class Principal extends javax.swing.JFrame {
             String Autor = tf_autor5.getText();
             Date fecha = new Date();
             fecha.setYear(jd_anio5.getYear());
-
+            
             String genero;
-
+            
             if (b_acc7.isSelected()) {
                 genero = "Accion";
             } else if (b_fan7.isSelected()) {
@@ -1360,7 +1384,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 genero = "Romance";
             }
-
+            
             Libro l = listaLibros.get(cb_libros.getSelectedIndex());
             l.setAutor(Autor);
             l.setCopiasDisponibles(copias);
@@ -1370,7 +1394,7 @@ public class Principal extends javax.swing.JFrame {
             l.getPuntaje();
             l.getTitulo();
             l.getValor();
-
+            
             Libros();
             JOptionPane.showMessageDialog(this, "Libro modificado exitosamente");
         } catch (Exception e) {
@@ -1380,7 +1404,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-
+            
             String titulo = tf_titulo.getText();
             String descripcion = tf_descripcion.getText();
             byte puntuacion = (byte) sp_puntuacion.getValue();
@@ -1393,9 +1417,9 @@ public class Principal extends javax.swing.JFrame {
             String Autor = tf_autor.getText();
             Date fecha = new Date();
             fecha.setYear(jd_anio.getYear());
-
+            
             String genero;
-
+            
             if (b_acc2.isSelected()) {
                 genero = "Accion";
             } else if (b_fan2.isSelected()) {
@@ -1414,24 +1438,29 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void eliminarlibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarlibroActionPerformed
-
+        
         listaLibros.remove(cb_libros.getSelectedIndex());
         Actualizar();
 
     }//GEN-LAST:event_eliminarlibroActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       Administrador.dispose();
+        Administrador.dispose();
         Login.setModal(true);
         Login.pack();
         Login.setLocationRelativeTo(null);
         Login.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void bt_agregarColeccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_agregarColeccion1ActionPerformed
+       DefaultComboBoxModel modelo = (DefaultComboBoxModel) jl_Buscarfavorito.getModel();
+        miUsuario.getListaLibros().add((Libro)modelo.getElementAt(jl_Buscarfavorito.getSelectedIndex()));
+    }//GEN-LAST:event_bt_agregarColeccion1ActionPerformed
+    
     public void Libros() {
         try {
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_libros.getModel();
-
+            
             tf_titulo5.setText(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getTitulo());
             tf_descripcion5.setText(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getDescripcion());
             sp_puntuacion5.setValue(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getValor());
@@ -1440,9 +1469,9 @@ public class Principal extends javax.swing.JFrame {
             tf_autor5.setText(((Libro) modelo.getElementAt(cb_libros.getSelectedIndex())).getAutor());
         } catch (Exception e) {
         }
-
+        
     }
-
+    
     private boolean validarUsuario(String nick, String pass) {
         for (Usuario user : usuarios) {
             if (nick.equalsIgnoreCase(user.getNick()) && pass.equals(user.getPass())) {
@@ -1452,26 +1481,30 @@ public class Principal extends javax.swing.JFrame {
         }
         return false;
     }
-
+    
     public void Actualizar() {
         DefaultListModel modeloLista = (DefaultListModel) jl_amigos.getModel();
         DefaultListModel modeloBuscar = (DefaultListModel) jl_BuscarAmigos.getModel();
         DefaultListModel modeloSolicitud = (DefaultListModel) jl_solicitudes.getModel();
         DefaultListModel modelolibros = (DefaultListModel) jl_BuscarLibros.getModel();
+        DefaultListModel modelolibros2 = (DefaultListModel) jl_mislibros.getModel();
+        DefaultListModel modelolibros3 = (DefaultListModel) jl_Buscarfavorito.getModel();
         modeloLista.removeAllElements();
         modeloBuscar.removeAllElements();
         modeloSolicitud.removeAllElements();
         modelolibros.removeAllElements();
+        modelolibros2.removeAllElements();
+        modelolibros3.removeAllElements();
         
         for (Usuario user : miUsuario.getListaAmigos()) {
-
+            
             modeloLista.addElement(user);
-
+            
         }
         for (Usuario sl : miUsuario.getSolicitudes()) {
-
+            
             modeloSolicitud.addElement(sl);
-
+            
         }
         for (Usuario user : usuarios) {
             if (!miUsuario.getListaAmigos().contains(user) && !user.equals(miUsuario) && !miUsuario.getSolicitudes().contains(user) && !user.getSolicitudes().contains(miUsuario)) {
@@ -1483,15 +1516,25 @@ public class Principal extends javax.swing.JFrame {
             modelolibros.addElement(lb);
             
         }
-
+        for (Libro lb : miUsuario.getListaLibros()) {
+            modelolibros2.addElement(lb);
+            
+        }
+        for (Libro lb : listaLibros) {
+            if (lb.getGenero().equals(miUsuario.getGeneroFavorito())) {
+                modelolibros3.addElement(lb);
+            }
+            
+        }
+        
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_libros.getModel();
         modelo.removeAllElements();
         for (Libro lb : listaLibros) {
             modelo.addElement(lb);
-
+            
         }
         Libros();
-
+        
     }
 
     /**
@@ -1579,6 +1622,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton bt_Login;
     private javax.swing.JButton bt_NuevoUsuario;
     private javax.swing.JButton bt_agregarColeccion;
+    private javax.swing.JButton bt_agregarColeccion1;
     private javax.swing.JButton bt_enviarSolicitud;
     private javax.swing.JButton bt_join;
     private javax.swing.JButton bt_modificarCuenta;
@@ -1661,6 +1705,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1682,13 +1727,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTabbedPane jTabbedPane6;
-    private javax.swing.JTable jTable1;
     private com.toedter.calendar.JYearChooser jd_anio;
     private com.toedter.calendar.JYearChooser jd_anio1;
     private com.toedter.calendar.JYearChooser jd_anio2;
@@ -1699,7 +1744,9 @@ public class Principal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jd_nacimiento1;
     private javax.swing.JList<String> jl_BuscarAmigos;
     private javax.swing.JList<String> jl_BuscarLibros;
+    private javax.swing.JList<String> jl_Buscarfavorito;
     private javax.swing.JList<String> jl_amigos;
+    private javax.swing.JList<String> jl_mislibros;
     private javax.swing.JList<String> jl_solicitudes;
     private javax.swing.JButton modificarlibro;
     private javax.swing.JSpinner sp_puntuacion;

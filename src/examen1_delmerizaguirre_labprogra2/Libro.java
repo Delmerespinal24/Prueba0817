@@ -1,9 +1,9 @@
-
 package examen1_delmerizaguirre_labprogra2;
 
 import java.util.Date;
 
 public class Libro {
+
     private String titulo;
     private String Descripcion;
     private byte puntaje;
@@ -93,8 +93,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{" + "titulo=" + titulo + ", Descripcion=" + Descripcion + ", puntaje=" + puntaje + ", copiasDisponibles=" + copiasDisponibles + ", genero=" + genero + ", valor=" + valor + ", autor=" + autor + ", punlicacion=" + punlicacion + '}';
+        return titulo + " Autor: " + autor;
     }
-    
-    
+
 }
